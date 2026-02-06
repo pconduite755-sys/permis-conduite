@@ -3,24 +3,34 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Formulaire d'inscription</title>
+<title>Formulaire d'inscription - Permis de Conduire</title>
 <style>
-body {font-family: Arial,sans-serif;background:#f5f5f5;margin:0;padding:0;}
-.container {max-width:720px;margin:20px auto;background:#fff;padding:25px;border-radius:12px;box-shadow:0 5px 15px rgba(0,0,0,0.1);} 
-h1{text-align:center;color:#222;margin-bottom:10px;} 
-p{font-size:14px;color:#555;margin-bottom:15px;text-align:center;} 
-label{display:block;margin-top:15px;font-weight:bold;color:#333;} 
-input, select, textarea{width:100%;padding:12px;margin-top:5px;border-radius:6px;border:1px solid #ccc;box-sizing:border-box;font-size:14px;} 
-textarea{resize:vertical;} 
-.btn{margin-top:20px;width:100%;padding:14px;background:#0a7a3d;color:#fff;border:none;border-radius:6px;font-size:16px;cursor:pointer;} 
-.btn:hover{background:#075c2f;} 
-.note{margin-top:20px;font-size:13px;color:#777;text-align:center;} 
-.signature{border:1px solid #ccc;border-radius:6px;height:120px;margin-top:10px;} 
-.lang{text-align:center;margin-bottom:15px;}
-.lang button{margin:5px;padding:6px 12px;cursor:pointer;}
-.confidential-container {display:flex; align-items:center; gap:10px; margin-top:10px; flex-wrap: wrap;}
-.conf-text {font-size:13px; color:#555;}
-.trust-text {font-size:13px; color:#555;}
+body {font-family: 'Arial',sans-serif;background:#e8f0f2;margin:0;padding:0;}
+.container {max-width:800px;margin:30px auto;padding:20px;}
+h1 {text-align:center;color:#0a7a3d;margin-bottom:20px;}
+p.description {text-align:center;font-size:14px;color:#555;margin-bottom:30px;}
+.section {background:#fff;padding:20px 25px;border-radius:12px;box-shadow:0 8px 20px rgba(0,0,0,0.08);margin-bottom:25px;opacity:0;transform:translateY(20px);transition:opacity 0.8s ease, transform 0.8s ease;}
+.section.visible {opacity:1;transform:translateY(0);}
+.section h2 {color:#0a7a3d;margin-bottom:15px;font-size:18px;border-bottom:2px solid #0a7a3d33;padding-bottom:5px;}
+label {display:block;margin-top:12px;font-weight:bold;color:#333;}
+input, select, textarea {width:100%;padding:12px;margin-top:5px;border-radius:8px;border:1px solid #ccc;font-size:14px;box-sizing:border-box;transition:0.3s all;}
+input:focus, select:focus, textarea:focus {border-color:#0a7a3d;box-shadow:0 0 6px rgba(10,122,61,0.2);outline:none;}
+textarea {resize:vertical;}
+.btn {margin-top:20px;width:100%;padding:14px;background:linear-gradient(135deg,#0a7a3d,#0fbf6b);color:#fff;font-size:16px;font-weight:bold;border-radius:8px;border:none;cursor:pointer;transition:0.3s all;}
+.btn:hover {background:linear-gradient(135deg,#075c2f,#0fa86b);}
+.signature {border:2px dashed #0a7a3d;border-radius:8px;height:140px;margin-top:10px;touch-action:none;}
+.lang {text-align:center;margin-bottom:20px;}
+.lang button {margin:5px;padding:8px 14px;border-radius:8px;border:none;font-weight:bold;color:#fff;background:#0a7a3d;cursor:pointer;transition:0.3s all;}
+.lang button:hover {background:#075c2f;}
+.confidential-container {display:flex;align-items:center;gap:6px;margin-top:15px;}
+.conf-text {font-size:14px;color:#333;}
+.trust-text {font-size:13px;color:#0a7a3d;margin-top:10px;font-weight:bold;text-align:center;}
+#docs_message {font-size:14px;color:#0a7a3d;text-align:center;margin-top:10px;white-space:pre-line;font-weight:bold;}
+#after_send {color:#0a7a3d;font-weight:bold;text-align:center;margin-top:15px;font-size:15px;}
+.note {font-size:13px;color:#777;text-align:center;margin-top:10px;}
+input[type="checkbox"] {transform:scale(1.2);accent-color:#0a7a3d;cursor:pointer;}
+#wa_floating {position:fixed;bottom:25px;right:25px;background:#25D366;color:#fff;font-size:28px;border-radius:50%;width:60px;height:60px;text-align:center;line-height:60px;box-shadow:0 5px 15px rgba(0,0,0,0.3);z-index:1000;transition:transform 0.3s;}
+#wa_floating:hover {transform:scale(1.1);}
 </style>
 </head>
 <body>
@@ -33,40 +43,38 @@ textarea{resize:vertical;}
 </div>
 
 <h1 id="title"></h1>
-<p id="desc"></p>
+<p class="description" id="desc"></p>
 
 <form id="form">
+
+<div class="section" id="section1">
+<h2 id="section1_title"></h2>
 <label id="l_dossier"></label>
 <input id="dossier" readonly>
-
 <label id="l_nom"></label>
 <input id="nom" required>
-
 <label id="l_prenom"></label>
 <input id="prenom" required>
-
 <label id="l_naissance"></label>
-<input id="naissance" type="date" required>
-
+<input type="date" id="naissance" required>
 <label id="l_lieu"></label>
 <input id="lieu" required>
-
 <label id="l_sexe"></label>
 <select id="sexe" required>
   <option value=""></option>
   <option id="opt_m"></option>
   <option id="opt_f"></option>
 </select>
-
 <label id="l_nat"></label>
 <input id="nationalite" required>
-
 <label id="l_adresse"></label>
 <textarea id="adresse" rows="2" required></textarea>
-
 <label id="l_tel"></label>
 <input id="telephone" required>
+</div>
 
+<div class="section" id="section2">
+<h2 id="section2_title"></h2>
 <label id="l_permis"></label>
 <select id="permis" required>
   <option value=""></option>
@@ -75,104 +83,140 @@ textarea{resize:vertical;}
   <option id="pC"></option>
   <option id="pD"></option>
 </select>
-
 <label id="l_piece"></label>
 <input id="piece" required>
+</div>
 
-<label id="l_photo"></label>
-<input type="file" accept="image/*" required>
-
-<label id="l_cni"></label>
-<input type="file" accept="image/*,.pdf" required>
-
+<div class="section" id="section3">
+<h2 id="section3_title"></h2>
 <label id="l_sign"></label>
 <canvas id="signature" class="signature"></canvas>
 <button type="button" onclick="clearSign()" id="btn_clear"></button>
-
 <div class="confidential-container">
-  <input type="checkbox" id="confidential" required>
-  <span class="conf-text" id="conf_text"></span>
-  <span class="trust-text" id="trust_message"></span>
+<input type="checkbox" id="confidential" required>
+<label for="confidential" id="conf_text" class="conf-text"></label>
 </div>
-
+<p id="trust_message" class="trust-text"></p>
 <label id="l_whatsapp"></label>
 <input id="whatsapp">
+</div>
 
 <button class="btn" type="submit" id="btn_submit"></button>
-</form>
-
+<p id="docs_message"></p>
+<p id="after_send"></p>
 <p class="note" id="note"></p>
-
+</form>
 </div>
+
+<!-- Bouton flottant WhatsApp -->
+<a href="https://wa.me/48793270820" target="_blank" id="wa_floating" title="Contacter via WhatsApp">💬</a>
 
 <script>
 // Numéro dossier
-dossier.value = 'PC-' + Date.now();
+dossier.value='PC-'+Date.now();
 
-// Signature
-const canvas = document.getElementById('signature');
-const ctx = canvas.getContext('2d');
+// Signature tactile + souris
+const canvas=document.getElementById('signature');
+const ctx=canvas.getContext('2d');
 let drawing=false;
-canvas.width=canvas.offsetWidth;
-canvas.height=canvas.offsetHeight;
-canvas.onmousedown=e=>{drawing=true;ctx.moveTo(e.offsetX,e.offsetY)};
-canvas.onmousemove=e=>{if(drawing){ctx.lineTo(e.offsetX,e.offsetY);ctx.stroke()}};
-canvas.onmouseup=()=>drawing=false;
-function clearSign(){ctx.clearRect(0,0,canvas.width,canvas.height)}
+canvas.width=canvas.offsetWidth; canvas.height=canvas.offsetHeight;
 
-// Textes multilingues
+function getPos(e){
+  if(e.touches){
+    const rect=canvas.getBoundingClientRect();
+    return {x:e.touches[0].clientX-rect.left,y:e.touches[0].clientY-rect.top};
+  }
+  return {x:e.offsetX,y:e.offsetY};
+}
+function startDraw(e){e.preventDefault();drawing=true; const pos=getPos(e); ctx.beginPath(); ctx.moveTo(pos.x,pos.y);}
+function draw(e){if(!drawing) return;e.preventDefault(); const pos=getPos(e); ctx.lineTo(pos.x,pos.y); ctx.stroke();}
+function stopDraw(){drawing=false;}
+canvas.addEventListener('mousedown',startDraw);
+canvas.addEventListener('mousemove',draw);
+canvas.addEventListener('mouseup',stopDraw);
+canvas.addEventListener('touchstart',startDraw,{passive:false});
+canvas.addEventListener('touchmove',draw,{passive:false});
+canvas.addEventListener('touchend',stopDraw);
+function clearSign(){ctx.clearRect(0,0,canvas.width,canvas.height);}
+
+// Multilangue
 const T={
-fr:{title:"Formulaire d'inscription",desc:"Veuillez remplir soigneusement vos informations.",dossier:"Numéro de dossier",nom:"Nom",prenom:"Prénom(s)",naissance:"Date de naissance",lieu:"Lieu de naissance",sexe:"Sexe",m:"Masculin",f:"Féminin",nat:"Nationalité",adresse:"Adresse complète",tel:"Téléphone",permis:"Type de permis",A:"Permis A (Moto)",B:"Permis B (Voiture)",C:"Permis C (Poids lourd)",D:"Permis D (Transport)",piece:"Numéro de pièce d'identité",photo:"Photo d'identité",cni:"Scan CNI / Passeport",sign:"Signature du client",clear:"Effacer la signature",wa:"Contact WhatsApp (facultatif)",send:"Envoyer le dossier",note:"🔒 Informations strictement confidentielles.",conf:"Je confirme que les informations fournies sont exactes.",trust:"Vos informations sont protégées et utilisées uniquement pour constituer votre permis. Vous pouvez nous faire entièrement confiance."},
-en:{title:"Registration Form",desc:"Please carefully fill in your information.",dossier:"File number",nom:"Last name",prenom:"First name(s)",naissance:"Date of birth",lieu:"Place of birth",sexe:"Gender",m:"Male",f:"Female",nat:"Nationality",adresse:"Full address",tel:"Phone",permis:"License type",A:"License A (Motorcycle)",B:"License B (Car)",C:"License C (Truck)",D:"License D (Transport)",piece:"ID document number",photo:"ID photo",cni:"ID / Passport scan",sign:"Client signature",clear:"Clear signature",wa:"WhatsApp contact (optional)",send:"Submit application",note:"🔒 Confidential information.",conf:"I confirm that the information provided is accurate.",trust:"Your information is protected and used only to process your license. You can trust us completely."},
-pl:{title:"Formularz rejestracyjny",desc:"Prosimy o dokładne wypełnienie swoich danych.",dossier:"Numer sprawy",nom:"Nazwisko",prenom:"Imię / Imiona",naissance:"Data urodzenia",lieu:"Miejsce urodzenia",sexe:"Płeć",m:"Mężczyzna",f:"Kobieta",nat:"Obywatelstwo",adresse:"Adres zamieszkania",tel:"Telefon",permis:"Rodzaj prawa jazdy",A:"Prawo jazdy A (Motocykl)",B:"Prawo jazdy B (Samochód)",C:"Prawo jazdy C (Ciężarowe)",D:"Prawo jazdy D (Transport)",piece:"Numer dokumentu tożsamości",photo:"Zdjęcie do dokumentu",cni:"Skan dowodu / paszportu",sign:"Podpis klienta",clear:"Wyczyść podpis",wa:"Kontakt WhatsApp (opcjonalnie)",send:"Wyślij wniosek",note:"🔒 Dane poufne.",conf:"Potwierdzam, że podane informacje są prawdziwe.",trust:"Twoje informacje są chronione i używane wyłącznie do przygotowania prawa jazdy. Możesz nam całkowicie zaufać."}
+fr:{title:"Formulaire d'inscription",desc:"Veuillez remplir soigneusement vos informations.",section1:"Informations personnelles",section2:"Permis & Documents",section3:"Signature et validation",dossier:"Numéro de dossier",nom:"Nom",prenom:"Prénom(s)",naissance:"Date de naissance",lieu:"Lieu de naissance",sexe:"Sexe",m:"Masculin",f:"Féminin",nat:"Nationalité",adresse:"Adresse complète",tel:"Téléphone",permis:"Type de permis",A:"Permis A",B:"Permis B",C:"Permis C",D:"Permis D",piece:"Numéro de pièce d'identité",sign:"Signature du client",clear:"Effacer la signature",wa:"Contact WhatsApp (facultatif)",send:"Envoyer le dossier",note:"🔒 Informations strictement confidentielles.",conf:"Je confirme que les informations fournies sont exactes.",trust:"Vos informations sont protégées et utilisées uniquement pour constituer votre permis. Vous pouvez nous faire entièrement confiance.",docs:"📎 Documents obligatoires :\n– Photo visible de vous\n– Scan CNI / Passeport",afterSend:"✔️ Votre formulaire a été envoyé avec succès."},
+en:{title:"Registration Form",desc:"Please carefully fill in your information.",section1:"Personal Information",section2:"License & Documents",section3:"Signature & Validation",dossier:"File number",nom:"Last name",prenom:"First name(s)",naissance:"Date of birth",lieu:"Place of birth",sexe:"Gender",m:"Male",f:"Female",nat:"Nationality",adresse:"Full address",tel:"Phone",permis:"License type",A:"License A",B:"License B",C:"License C",D:"License D",piece:"ID number",sign:"Client signature",clear:"Clear signature",wa:"WhatsApp contact (optional)",send:"Submit application",note:"🔒 Confidential information.",conf:"I confirm the information provided is accurate.",trust:"Your information is protected and used only for your license.",docs:"📎 Mandatory documents:\n– Clear photo of you\n– ID card / Passport scan",afterSend:"✔️ Your application has been sent successfully."},
+pl:{title:"Formularz rejestracyjny",desc:"Prosimy o dokładne wypełnienie swoich danych.",section1:"Dane osobowe",section2:"Prawo jazdy i dokumenty",section3:"Podpis i weryfikacja",dossier:"Numer sprawy",nom:"Nazwisko",prenom:"Imię / Imiona",naissance:"Data urodzenia",lieu:"Miejsce urodzenia",sexe:"Płeć",m:"Mężczyzna",f:"Kobieta",nat:"Obywatelstwo",adresse:"Adres",tel:"Telefon",permis:"Rodzaj prawa jazdy",A:"Prawo jazdy A",B:"Prawo jazdy B",C:"Prawo jazdy C",D:"Prawo jazdy D",piece:"Numer dokumentu",sign:"Podpis klienta",clear:"Wyczyść podpis",wa:"Kontakt WhatsApp",send:"Wyślij wniosek",note:"🔒 Dane poufne.",conf:"Potwierdzam, że podane informacje są prawdziwe.",trust:"Dane są chronione i używane wyłącznie do przygotowania prawa jazdy.",docs:"📎 Wymagane dokumenty:\n– Zdjęcie\n– Skan dowodu / paszportu",afterSend:"✔️ Twój formularz został wysłany pomyślnie."}
 };
 
 function setLang(l){
- document.documentElement.lang=l;
- title.innerText=T[l].title;
- desc.innerText=T[l].desc;
- l_dossier.innerText=T[l].dossier;
- l_nom.innerText=T[l].nom;
- l_prenom.innerText=T[l].prenom;
- l_naissance.innerText=T[l].naissance;
- l_lieu.innerText=T[l].lieu;
- l_sexe.innerText=T[l].sexe;
- opt_m.innerText=T[l].m;
- opt_f.innerText=T[l].f;
- l_nat.innerText=T[l].nat;
- l_adresse.innerText=T[l].adresse;
- l_tel.innerText=T[l].tel;
- l_permis.innerText=T[l].permis;
- pA.innerText=T[l].A;
- pB.innerText=T[l].B;
- pC.innerText=T[l].C;
- pD.innerText=T[l].D;
- l_piece.innerText=T[l].piece;
- l_photo.innerText=T[l].photo;
- l_cni.innerText=T[l].cni;
- l_sign.innerText=T[l].sign;
- btn_clear.innerText=T[l].clear;
- l_whatsapp.innerText=T[l].wa;
- btn_submit.innerText=T[l].send;
- note.innerText=T[l].note;
- conf_text.innerText=T[l].conf;
- trust_message.innerText=T[l].trust;
+document.documentElement.lang=l;
+title.innerText=T[l].title;
+desc.innerText=T[l].desc;
+section1_title.innerText=T[l].section1;
+section2_title.innerText=T[l].section2;
+section3_title.innerText=T[l].section3;
+l_dossier.innerText=T[l].dossier;
+l_nom.innerText=T[l].nom;
+l_prenom.innerText=T[l].prenom;
+l_naissance.innerText=T[l].naissance;
+l_lieu.innerText=T[l].lieu;
+l_sexe.innerText=T[l].sexe;
+opt_m.innerText=T[l].m;
+opt_f.innerText=T[l].f;
+l_nat.innerText=T[l].nat;
+l_adresse.innerText=T[l].adresse;
+l_tel.innerText=T[l].tel;
+l_permis.innerText=T[l].permis;
+pA.innerText=T[l].A;
+pB.innerText=T[l].B;
+pC.innerText=T[l].C;
+pD.innerText=T[l].D;
+l_piece.innerText=T[l].piece;
+l_sign.innerText=T[l].sign;
+btn_clear.innerText=T[l].clear;
+l_whatsapp.innerText=T[l].wa;
+btn_submit.innerText=T[l].send;
+note.innerText=T[l].note;
+conf_text.innerText=T[l].conf;
+trust_message.innerText=T[l].trust;
+docs_message.innerText=T[l].docs;
+after_send.innerText="";
 }
-
 setLang('fr');
 
-// Envoi
-form.addEventListener('submit',function(e){
- e.preventDefault();
- if(!confidential.checked){alert('Veuillez confirmer la confidentialité.'); return;}
- const msg=`📄 ${title.innerText}\n\n${l_dossier.innerText}: ${dossier.value}\n${l_nom.innerText}: ${nom.value}\n${l_prenom.innerText}: ${prenom.value}\n${l_naissance.innerText}: ${naissance.value}\n${l_lieu.innerText}: ${lieu.value}\n${l_sexe.innerText}: ${sexe.value}\n${l_nat.innerText}: ${nationalite.value}\n${l_adresse.innerText}: ${adresse.value}\n${l_tel.innerText}: ${telephone.value}\n${l_permis.innerText}: ${permis.value}\n${l_piece.innerText}: ${piece.value}`;
- const wa='https://wa.me/48793270820?text='+encodeURIComponent(msg);
- const mail='mailto:pconduite755@gmail.com?subject=Permis&body='+encodeURIComponent(msg);
- const w=window.open(wa,'_blank');
- setTimeout(()=>{if(!w||w.closed){window.location.href=mail}},800);
- alert('✔️ Formulaire envoyé avec succès');
- this.reset();
+// Fade-in au scroll
+document.querySelectorAll('.section').forEach(s=>{
+const observer=new IntersectionObserver(entries=>{
+entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible');});
+},{threshold:0.3});
+observer.observe(s);
 });
+
+// Envoi formulaire
+form.onsubmit=e=>{
+e.preventDefault();
+if(!confidential.checked){alert("Veuillez confirmer la confidentialité");return;}
+const lang=document.documentElement.lang;
+const msg=`${T[lang].title}
+
+${T[lang].dossier}: ${dossier.value}
+${T[lang].nom}: ${nom.value}
+${T[lang].prenom}: ${prenom.value}
+${T[lang].naissance}: ${naissance.value}
+${T[lang].lieu}: ${lieu.value}
+${T[lang].sexe}: ${sexe.value}
+${T[lang].nat}: ${nationalite.value}
+${T[lang].adresse}: ${adresse.value}
+${T[lang].tel}: ${telephone.value}
+${T[lang].permis}: ${permis.value}
+${T[lang].piece}: ${piece.value}
+
+${T[lang].docs}`;
+const wa='https://wa.me/48793270820?text='+encodeURIComponent(msg);
+const mail='mailto:pconduite755@gmail.com?subject=Permis&body='+encodeURIComponent(msg);
+const w=window.open(wa,'_blank');
+setTimeout(()=>{if(!w||w.closed)location.href=mail},800);
+after_send.innerText=T[lang].afterSend;
+form.reset(); clearSign();
+};
 </script>
 
 </body>
